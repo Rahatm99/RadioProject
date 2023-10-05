@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+    <link rel="stylesheet" href="ProducerStyle.css">
+    <title>SWE432</title>
+</head>
+
+<body>
+    <nav>
+        <div class="NavLeft">
+            <img class="NavImg" src="">
+            <p class="Text NavLabel">Station</p>
+        </div>
+        
+        <div class="NavRight">
+            <ul>
+                <li>
+                    <a href="Home" class="Text">Home</a>
+                </li>
+                <li>
+                    <a href="About" class="Text">About</a>
+                </li>
+                <li>
+                    <a href="Stations" class="Text">Stations</a>
+                </li>
+                <li>
+                    <a href="Artists" class="Text">Artists</a>
+                </li>
+                <li>
+                    <a href="Settings" class="Text">Settings</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- top of the scroll wheel is going into the nav bar-->
+    <div class="Sidebar">
+        <p class="SideBarLabel Text">
+            Timeslots
+        </p>
+        <ul class="TimeslotsList">
+            <li><a href="#">9:00 AM - 10:00 AM</a></li>
+            <li><a href="#">10:00 AM - 11:00 AM</a></li>
+            <li><a href="#">11:00 AM - 12:00 PM</a></li>
+            <li><a href="#">12:00 PM - 1:00 PM</a></li>
+            <li><a href="#">1:00 PM - 2:00 PM</a></li>
+            <li><a href="#">2:00 PM - 3:00 PM</a></li>
+            <li><a href="#">3:00 PM - 4:00 PM</a></li>
+            <li><a href="#">4:00 PM - 5:00 PM</a></li>
+            <li><a href="#">5:00 PM - 6:00 PM</a></li>
+            <li><a href="#">6:00 PM - 7:00 PM</a></li>
+            <li><a href="#">7:00 PM - 8:00 PM</a></li>
+            <li><a href="#">8:00 PM - 9:00 PM</a></li>
+            <li><a href="#">9:00 PM - 10:00 PM</a></li>
+            <li><a href="#">10:00 PM - 11:00 PM</a></li>
+            <li><a href="#">11:00 PM - 12:00 AM</a></li>
+            <li><a href="#">12:00 AM - 1:00 AM</a></li>
+            <li><a href="#">1:00 AM - 2:00 AM</a></li>
+            <li><a href="#">2:00 AM - 3:00 AM</a></li>
+            <li><a href="#">3:00 AM - 4:00 AM</a></li>
+            <li><a href="#">4:00 AM - 5:00 AM</a></li>
+        </ul>
+    </div>
+
+    <div class="Content">
+        <div class ="MainGrid">
+            <div class="TimeslotInfo" style="margin-left: .5em;">
+                <h1 style="padding: 0%;">Timeslot Info</h1>
+                <h2>Time : 9:00 AM - 10:00 AM</h2>
+                <h3>DJ: DJ Person 1</h3>
+            </div>
+
+            <div class="TimeslotInfo" style="font-family: Helvetica; font-size: 1em; text-align: center;">
+                <h1 style>DJ</h1>
+
+                <ul class="DjPeopleList">
+                    <li>DJ Person 1
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+                    
+                    <li>DJ Person 2
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+
+                    <li>DJ Person 3
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+
+                    <li>DJ Person 4
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+                </ul>
+            </div>
+            
+            <!--Confirmation for booking-->
+            <script>
+                function confirmBooking(){
+                    const confirmation = window.confirm("Are you sure you want to book?")
+                }
+            </script>
+
+        </div>
+    </div>
+</body>
+</html>
+
