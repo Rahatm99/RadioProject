@@ -6,17 +6,18 @@ function confirmBooking() {
 function searchDJs() {
     var input = document.getElementById("searchInput").value.toLowerCase();
     var list = document.getElementById("djList");
-    var items = list.getElementsByTagName("li");
+    var item = list.getElementsByTagName("li");
 
-    for (var i = 0; i < items.length; i++) {
-        var text = items[i].textContent.toLowerCase();
+    //Iterates through the list to find matches
+    for (var i = 0; i < item.length; i++) {
+        var text = item[i].textContent.toLowerCase();
         
-        if (text.includes(input)) {
-            items[i].style.display = "list-item";
+        if (!text.includes(input)) {
+            item[i].style.display = "none";
         } 
         
         else {
-            items[i].style.display = "none";
+            item[i].style.display = "list-item";
         }
     }
 }
@@ -76,6 +77,7 @@ function displaySongs() {
         
         const playButton = document.createElement("button");
         playButton.textContent = "Play";
+        playButton.classList.add("BookButton");
         playButton.addEventListener("click", () => {
             playSong(song.title, song.artist, song.length);
         });
