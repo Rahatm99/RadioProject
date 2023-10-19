@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <link rel="stylesheet" href="ProducerStyle.css">
+    <script src = "ProducerJs.js" ></script>
     <title>SWE432</title>
 </head>
 
@@ -66,45 +67,83 @@
 
     <div class="Content">
         <div class ="MainGrid">
-            <div class="TimeslotInfo" style="margin-left: .5em;">
+            <div class="TimeslotBox" style="margin-left: .5em; font-family: Helvetica;">
                 <h1 style="padding: 0%;">Timeslot Info</h1>
                 <h2>Time : 9:00 AM - 10:00 AM</h2>
                 <h3>DJ: DJ Person 1</h3>
             </div>
 
-            <div class="TimeslotInfo" style="font-family: Helvetica; font-size: 1em; text-align: center;">
-                <h1 style>DJ</h1>
+            <div class="DjList" style="font-family: Helvetica; font-size: 1em; text-align: center;">
+                <h1>DJ List</h1>
+                <h2>Search:<input type="text" id="searchInput" onkeyup="searchDJs()" placeholder="Enter DJ Name"></h2>
+                <button onclick="toggleGridStyle()">Change Grid Style</button>
 
-                <ul class="DjPeopleList">
-                    <li>DJ Person 1
+                <ul class="DjPeopleList" id="djList">
+                    <li>DJ Analyze
                         <p>Availability: xx:xx - xx:xx</p>
                         <button onclick="confirmBooking()" class="BookButton">Book</button>
                     </li>
                     
-                    <li>DJ Person 2
+                    <li>DJ Soda
                         <p>Availability: xx:xx - xx:xx</p>
                         <button onclick="confirmBooking()" class="BookButton">Book</button>
                     </li>
 
-                    <li>DJ Person 3
+                    <li>DJ Khaled
                         <p>Availability: xx:xx - xx:xx</p>
                         <button onclick="confirmBooking()" class="BookButton">Book</button>
                     </li>
 
-                    <li>DJ Person 4
+                    <li>DJ Shaq Diesel
                         <p>Availability: xx:xx - xx:xx</p>
                         <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+
+                    <li>DJ Mango Boy
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+
+                    <li>DJ IMissHer
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+
+                    <li>DJ Asim
+                        <p>Availability: xx:xx - xx:xx</p>
+                        <button onclick="confirmBooking()" class="BookButton">Book</button>
+                    </li>
+                    
+                </ul>
+
+                <ul class="SongList" id="songList" style="text-align: left;">
+                    <li>Song 1
+                        <p>Song Length: xx:xx</p>
+                        <button id = "songButton" class="BookButton">Play</button>
+                    </li>
+                    
+                    <li>Song 2
+                        <p>Song Length: xx:xx</p>
+                        <button id = "songButton" class="BookButton">Play</button>
+                    </li>
+
+                    <li>Song 3
+                        <p>Song Length: xx:xx</p>
+                        <button id = "songButton" class="BookButton">Play</button>
+                    </li>
+
+                    <li>Song 4
+                        <p>Song Length: xx:xx</p>
+                        <button id = "songButton" class="BookButton">Play</button>
+                    </li>
+
+                    <li>Song 5
+                        <p>Song Length: xx:xx</p>
+                        <button id = "songButton" class="BookButton">Play</button>
                     </li>
                 </ul>
             </div>
             
-            <!--Confirmation for booking-->
-            <script>
-                function confirmBooking(){
-                    const confirmation = window.confirm("Are you sure you want to book?")
-                }
-            </script>
-
         </div>
     </div>
 </body>
