@@ -22,7 +22,7 @@ function searchDJs() {
 }
 
 //Toggles lists from DJs to Songs
-function toggleGridStyle() {
+function toggleList() {
     var djList = document.getElementById("djList");
     var songList = document.getElementById("songList");
 
@@ -77,7 +77,7 @@ function displaySongs() {
         const playButton = document.createElement("button");
         playButton.textContent = "Play";
         playButton.addEventListener("click", () => {
-            playSong(song.title);
+            playSong(song.title, song.artist, song.length);
         });
 
         list.appendChild(playButton);
@@ -89,6 +89,10 @@ function displaySongs() {
 document.addEventListener("DOMContentLoaded", displaySongs);
 
 //Alert when play button is clicked
-function playSong(songName) {
+function playSong(songName, songArtist, songLength) {
     alert(`Now Playing: ${songName}`);
+
+    //Changes song name in the main box
+    const song = document.getElementById("songPlaying");
+    song.textContent = `Now Playing: ${songName} | By: ${songArtist} | Length: ${songLength}`;
 }
