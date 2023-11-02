@@ -1,69 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
-    <link rel="stylesheet" href="ProducerStyle.css">
-    <script src = "ProducerJs.js" ></script>
-    <title>SWE432</title>
+    <%- include('../partials/head') %>
 </head>
 
 <body>
     <nav>
-        <div class="NavLeft">
-            <img class="NavImg" src="">
-            <p class="Text NavLabel">Station</p>
-        </div>
-        
-        <div class="NavRight">
-            <ul>
-                <li>
-                    <a href="Home" class="Text">Home</a>
-                </li>
-                <li>
-                    <a href="About" class="Text">About</a>
-                </li>
-                <li>
-                    <a href="Stations" class="Text">Stations</a>
-                </li>
-                <li>
-                    <a href="Artists" class="Text">Artists</a>
-                </li>
-                <li>
-                    <a href="Settings" class="Text">Settings</a>
-                </li>
-            </ul>
-        </div>
+        <%- include('../partials/nav') %>
     </nav>
 
-    <!--top of the scroll wheel is going into the nav bar-->
-    <div class="Sidebar">
-        <p class="SideBarLabel Text">
-            Timeslots
-        </p>
-        <ul class="TimeslotsList">
-            <li><a href="#">9:00 AM - 10:00 AM</a></li>
-            <li><a href="#">10:00 AM - 11:00 AM</a></li>
-            <li><a href="#">11:00 AM - 12:00 PM</a></li>
-            <li><a href="#">12:00 PM - 1:00 PM</a></li>
-            <li><a href="#">1:00 PM - 2:00 PM</a></li>
-            <li><a href="#">2:00 PM - 3:00 PM</a></li>
-            <li><a href="#">3:00 PM - 4:00 PM</a></li>
-            <li><a href="#">4:00 PM - 5:00 PM</a></li>
-            <li><a href="#">5:00 PM - 6:00 PM</a></li>
-            <li><a href="#">6:00 PM - 7:00 PM</a></li>
-            <li><a href="#">7:00 PM - 8:00 PM</a></li>
-            <li><a href="#">8:00 PM - 9:00 PM</a></li>
-            <li><a href="#">9:00 PM - 10:00 PM</a></li>
-            <li><a href="#">10:00 PM - 11:00 PM</a></li>
-            <li><a href="#">11:00 PM - 12:00 AM</a></li>
-            <li><a href="#">12:00 AM - 1:00 AM</a></li>
-            <li><a href="#">1:00 AM - 2:00 AM</a></li>
-            <li><a href="#">2:00 AM - 3:00 AM</a></li>
-            <li><a href="#">3:00 AM - 4:00 AM</a></li>
-            <li><a href="#">4:00 AM - 5:00 AM</a></li>
-        </ul>
-    </div>
+    <%- include('../partials/sidebar') %>
 
     <div class="Content">
         <div class ="MainGrid">
@@ -118,12 +64,12 @@
                         <p>Availability: xx:xx - xx:xx</p>
                         <button onclick="confirmBooking()" class="BookButton">Book</button>
                     </li>
+                    
                 </ul>
 
                 <!--Created in the js file-->
                 <ul class="SongList" id="songList" style="text-align: left;"></ul>
             </div>
-            
         </div>
     </div>
 </body>

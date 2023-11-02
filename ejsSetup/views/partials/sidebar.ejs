@@ -1,0 +1,10 @@
+<div class="Sidebar">
+    <p class="SideBarLabel Text">
+        Timeslots
+    </p>
+    <ul class="TimeslotsList">
+        <% timeslots.forEach(slot => { %>
+            <li><a href="#"><%= slot.time %></a></li>
+        <% }); %>
+    </ul>
+</div>
