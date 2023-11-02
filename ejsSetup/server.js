@@ -4,9 +4,8 @@ var app = express();
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
+// sets the 'static' folder to static
 app.use(express.static('static'));
-
-// use res.render to load up an ejs view file
 
 const songs = [
   {
@@ -50,8 +49,6 @@ const timeslots = [
   { time: '7:00 PM - 8:00 PM' },
   { time: '8:00 PM - 9:00 PM' },
   { time: '9:00 PM - 10:00 PM' },
-
-  // Add other timeslots as needed
 ];
 
 // index page
@@ -60,8 +57,8 @@ app.get('/', function(req, res) {
 });
 
 // about page
-app.get('/about', function(req, res) {
-  res.render('pages/about');
+app.get('/home', function(req, res) {
+  res.render('pages/home', {timeslots: timeslots });
 });
 
 
