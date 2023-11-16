@@ -1,5 +1,6 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -7,33 +8,32 @@ app.set('view engine', 'ejs');
 // sets the 'static' folder to static
 app.use(express.static('static'));
 
-const songs = [
-  {
-      title: "Bohemian Rhapsody",
-      artist: "Queen",
-      length: "5:55"
+mongoose.connect('mongodb://127.0.0.1:27017/swe432');
+const db = mongoose.connection;
+
+const musicSchema = new mongoose.Schema({
+  title: {
+    type: String,
   },
-  {
-      title: "Imagine",
-      artist: "John Lennon",
-      length: "3:02"
+  artist: {
+    type: String,
   },
-  {
-      title: "Hotel California",
-      artist: "Eagles",
-      length: "6:30"
-  },
-  {
-      title: "Like a Rolling Stone",
-      artist: "Bob Dylan",
-      length: "6:13"
-  },
-  {
-      title: "Gucci Gang",
-      artist: "Lil Pump",
-      length: "2:11"
+  length: {
+    type: String,
   }
-];
+});
+
+const playlistSchema = new mongoose.Schema({
+  timeslot: {
+    type: String,
+    required: true
+  },
+  songs: [musicSchema]
+});
+
+db.once('open', () => {
+  console.log('DEBUG: Mongo session has been connected');
+});
 
 const timeslots = [
   { time: '9:00 AM - 10:00 AM' },
@@ -51,9 +51,20 @@ const timeslots = [
   { time: '9:00 PM - 10:00 PM' },
 ];
 
+const Songs = mongoose.model('SongList', musicSchema, 'SongList');
+const Playlist = mongoose.model('Playlist', playlistSchema, 'Playlist');
+
+
 // index page
-app.get('/', function(req, res) {
-  res.render('pages/index', { songs: songs, timeslots: timeslots });
+app.get('/', async function(req, res) {
+  let songslist = await Songs.find();
+  let playlistDB = await Playlist.find();
+
+  res.render('pages/index', { 
+    DBsongs: songslist, 
+    timeslots: timeslots,
+    playlist : playlistDB
+   });
 });
 
 // about page
@@ -61,6 +72,10 @@ app.get('/home', function(req, res) {
   res.render('pages/home', {timeslots: timeslots });
 });
 
+app.get('/playlist', (req, res) => {
+  const timeslot = req.query.timeslot;
+  res.render('pages/playlist', { selectedTimeslot: timeslot });
+});
 
 app.listen(8080);
 console.log('Server is listening on port 8080');

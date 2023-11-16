@@ -15,8 +15,8 @@
         <div class ="MainGrid">
             <div class="TimeslotBox" style="margin-left: .5em; font-family: Helvetica;">
                 <h1 style="padding: 0%;">Timeslot Info</h1>
-                <h2>Time : 9:00 AM - 10:00 AM</h2>
-                <h3>DJ: DJ Person 1</h3>
+                <h2 id="timeslot"></h2>
+                <h3 id="djName"></h3>
                 <h4 id="songPlaying">Now Playing: Nothing | By: | Length:</h4>
                 <p id="demo"></p>
             </div>
@@ -69,9 +69,28 @@
 
                 <!--Created in the js file-->
                 <ul class="SongList" id="songList" style="text-align: left;"></ul>
+                <script>
+                    const songs = JSON.parse(`<%- JSON.stringify(DBsongs) %>`);
+                    const songListElement = document.getElementById('songList');
+                    
+                    songs.forEach(song => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${song.title} by ${song.artist} | Length: ${song.length}`;
+                        const playButton = document.createElement("button");
+                        playButton.textContent = "Play";
+                        playButton.classList.add("BookButton");
+                        playButton.addEventListener("click", () => {
+                            playSong(song.title, song.artist, song.length);
+                        });
+
+                        songListElement.appendChild(listItem);
+                        listItem.appendChild(playButton);
+                    });
+                </script>
             </div>
         </div>
     </div>
+
 </body>
 </html>
 

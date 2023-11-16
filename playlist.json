@@ -1,0 +1,47 @@
+{
+    "playlist": [
+      {
+        "timeslot": "9:00 AM - 10:00 AM",
+        "songs": [
+            {
+                "title": "Blinding Lights",
+                "artist": "The Weeknd",
+                "length": "3:22"
+              },
+              {
+                "title": "Peaches",
+                "artist": "Justin Bieber ft. Daniel Caesar, Giveon",
+                "length": "3:18"
+              }
+        ]
+      },
+      {
+        "timeslot": "10:00 AM - 11:00 AM",
+        "songs": []
+      },
+      {
+        "timeslot": "11:00 AM - 12:00 PM",
+        "songs": []
+      },
+      {
+        "timeslot": "12:00 PM - 1:00 PM",
+        "songs": []
+      },
+      {
+        "timeslot": "1:00 PM - 2:00 PM",
+        "songs": []
+      },
+      {
+        "timeslot": "2:00 PM - 3:00 PM",
+        "songs": []
+      },
+      {
+        "timeslot": "3:00 PM - 4:00 PM",
+        "songs": []
+      },
+      {
+        "timeslot": "4:00 PM - 5:00 PM",
+        "songs": []
+      }
+    ]
+  }
