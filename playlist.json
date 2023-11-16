@@ -1,5 +1,4 @@
-{
-    "playlist": [
+[
       {
         "timeslot": "9:00 AM - 10:00 AM",
         "songs": [
@@ -44,4 +43,3 @@
         "songs": []
       }
     ]
-  }

@@ -14,11 +14,49 @@
     <div class="Content">
         <div class ="MainGrid">
             <div class="TimeslotBox" style="margin-left: .5em; font-family: Helvetica;">
-                <h1 style="padding: 0%;">Timeslot Info</h1>
+                <h1 style="padding: 0%;">Playlist Info</h1>
                 <h2 id="timeslot"></h2>
-                <h3 id="djName"></h3>
+                <h3 id="mainSongList"></h3>
+                
+                <h1>Add Songs</h1>
+                    <form action="/addSong" method="POST">
+                    <select id="selectedSong" name="selectedSong" required>
+                        <% DBsongs.forEach(song => { %>
+                            <option value="<%= song.title %>"><%= song.title %> by <%= song.artist %></option>
+                        <% }); %>
+                    </select>
+
+                    <select id="selectedTimeslot" name="selectedTimeslot" required>
+                        <% playlist.forEach(item => { %>
+                            <option value="<%= item.timeslot %>"><%= item.timeslot %></option>
+                        <% }); %>
+                    </select>
+                    
+                    <button type="submit">Add Song</button>
+                    </form>
+
                 <h4 id="songPlaying">Now Playing: Nothing | By: | Length:</h4>
                 <p id="demo"></p>
+
+
+                <script>
+                    const playlist = JSON.parse(`<%- JSON.stringify(playlist) %>`);
+                    const timeSlotElement = document.getElementById('timeslot');
+                    const SongListElement = document.getElementById('mainSongList');
+                    
+                    const timeItem = document.createElement('p');
+                    timeItem.textContent = playlist[0].timeslot;
+                    timeSlotElement.appendChild(timeItem);
+
+                    playlist.forEach(item => {
+                        item.songs.forEach(song => {
+                            console.log(song);
+                            const listItem = document.createElement('li');
+                            listItem.textContent = `${song.title} by ${song.artist} | Length: ${song.length}`;;
+                            SongListElement.appendChild(listItem);
+                        });                        
+                    });
+                </script>
             </div>
 
             <div class="DjList" style="font-family: Helvetica; font-size: 1em; text-align: center;">
@@ -76,6 +114,7 @@
                     songs.forEach(song => {
                         const listItem = document.createElement('li');
                         listItem.textContent = `${song.title} by ${song.artist} | Length: ${song.length}`;
+                        
                         const playButton = document.createElement("button");
                         playButton.textContent = "Play";
                         playButton.classList.add("BookButton");
@@ -83,8 +122,16 @@
                             playSong(song.title, song.artist, song.length);
                         });
 
+                        const addButton = document.createElement("button");
+                        addButton.textContent = "Add";
+                        addButton.classList.add("BookButton");
+                        addButton.addEventListener("click", () => {
+                            addSong(song.title, song.artist, song.length);
+                        });
+
                         songListElement.appendChild(listItem);
                         listItem.appendChild(playButton);
+                        listItem.appendChild(addButton);
                     });
                 </script>
             </div>

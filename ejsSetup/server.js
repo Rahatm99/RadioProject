@@ -8,6 +8,9 @@ app.set('view engine', 'ejs');
 // sets the 'static' folder to static
 app.use(express.static('static'));
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 mongoose.connect('mongodb://127.0.0.1:27017/swe432');
 const db = mongoose.connection;
 
@@ -72,10 +75,27 @@ app.get('/home', function(req, res) {
   res.render('pages/home', {timeslots: timeslots });
 });
 
-app.get('/playlist', (req, res) => {
-  const timeslot = req.query.timeslot;
-  res.render('pages/playlist', { selectedTimeslot: timeslot });
+app.post('/addSong', async (req, res) => {
+  const selectedSongTitle = req.body.selectedSong;
+  const formTimeslot = req.body.selectedTimeslot;
+
+  const selectedSong = await Songs.findOne({title: selectedSongTitle});
+  if (!selectedSong) {
+    return res.status(404).json({ error: 'Selected song not found' });
+  }
+
+  const playlist = await Playlist.findOne({timeslot: formTimeslot});
+  if (!playlist) {
+    return res.status(404).json({error: 'Playlist not found'});
+  }
+
+  playlist.songs.push(selectedSong);
+  await playlist.save();
+
+  res.status(201).json({success: true, message: 'Song added to the playlist successfully'});
+
 });
+
 
 app.listen(8080);
 console.log('Server is listening on port 8080');

@@ -1,56 +1,28 @@
-const currentPlaylistIndex = 0;
-
-async function getAllSongs() {
-    const dbsongs = await Songs.find();
-}
-
-async function getPlaylist() {
-    const dbplaylist = await Playlist.find();
-}
-
-document.addEventListener("DOMContentLoaded", async function () {
-    await getPlaylist();
-    await getAllSongs();
-});
 
 async function displayPlaylist(index) {
-    console.log("button check");
-
-    const response = await fetch('/api/playlist');
-    const playlist = await response.json();
-
-    const selectedTimeslot = playlist[index];
-
-    document.getElementById('timeslot').textContent = `Time: ${selectedTimeslot.timeslot}`;
-    document.getElementById('djName').textContent = 'DJ: DJ Person 1';
-
-    if (selectedTimeslot.songs.length > 0) {
-        const firstSong = selectedTimeslot.songs[0];
-        document.getElementById('songPlaying').textContent = `Now Playing: ${firstSong.title} | By: ${firstSong.artist} | Length: ${firstSong.length}`;
-    } else {
-        // Handle the case when there are no songs in the selected timeslot
-        document.getElementById('songPlaying').textContent = 'Now Playing: Nothing | By: | Length:';
-    }
+    const SongListElement = document.getElementById('mainSongList');
+    const timeSlotElement = document.getElementById('timeslot');
+    timeSlotElement.textContent = timeslots[index].time;
+    SongListElement.textContent = "";
 }
 
 //Alert when play button is clicked
 function playSong(songName, songArtist, songLength) {
-    console.log("button check222222");
-
-
     alert(`Now Playing: ${songName}`);
-
-    // Add the song to the current playlist's songs array
-    playlist[currentPlaylistIndex].songs.push({
-        title: songName,
-        artist: songArtist,
-        length: songLength
-    });
 
     // Changes song name in the main box
     const song = document.getElementById("songPlaying");
     song.textContent = `Now Playing: ${songName} | By: ${songArtist} | Length: ${songLength}`;
 }
+
+function addSong(songName, songArtist, songLength) {
+    const SongListElement = document.getElementById('mainSongList');
+
+    const listItem = document.createElement('li');
+    listItem.textContent = `${songName} by ${songArtist} | Length: ${songLength}`;
+    SongListElement.appendChild(listItem);
+}
+
 
 function confirmBooking() {
     const confirmation = window.confirm("Are you sure you want to book this DJ?")
@@ -117,6 +89,22 @@ function displaySongs() {
         });
     });
 }
+
+const timeslots = [
+    { time: '9:00 AM - 10:00 AM' },
+    { time: '10:00 AM - 11:00 AM' },
+    { time: '11:00 AM - 12:00 PM' },
+    { time: '12:00 PM - 1:00 PM' },
+    { time: '1:00 PM - 2:00 PM' },
+    { time: '2:00 PM - 3:00 PM' },
+    { time: '3:00 PM - 4:00 PM' },
+    { time: '4:00 PM - 5:00 PM' },
+    { time: '5:00 PM - 6:00 PM' },
+    { time: '6:00 PM - 7:00 PM' },
+    { time: '7:00 PM - 8:00 PM' },
+    { time: '8:00 PM - 9:00 PM' },
+    { time: '9:00 PM - 10:00 PM' },
+  ];
 
 //Applies after page is loaded
 //document.addEventListener("DOMContentLoaded", displaySongs);
