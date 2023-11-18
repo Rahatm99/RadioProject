@@ -84,12 +84,36 @@ nav{
 }
 
 .TimeslotBox .Text{
-    color:var(--Secondary-Cedar);
+    color: var(--Secondary-Cedar);
     font-size: 1.2rem;
     font-family: Helvetica;
     font-weight: 600;
 }
 
+.PlayListBox {
+    display: flexbox;
+    background-color: var(--Secondary-Cedar);
+    border-radius: 10px; /* Adjust the radius to your preference */
+    overflow: auto; /* Add this property to enable scrolling if the content exceeds the box size */
+    
+    /* Adjust the width and height as needed */
+    height: 300px; /* You can use a specific value like pixels or percentage */
+}
+
+/* Example: Adjust the size of child elements */
+.PlayListBox li {
+    /* Styles for list items inside .PlayListBox */
+    /* You can adjust these based on your design */
+    padding: 10px;
+    margin: 5px;
+    background-color: #d8c2b6;
+    border-radius: 5px;
+}
+
+.FormBox {
+    display: flexbox;
+    margin-top: auto;
+}
 
 /*nav bar elements, unless you need to deviate heavily from the plan, you shouldn't need to edit this*/
 .NavLeft{

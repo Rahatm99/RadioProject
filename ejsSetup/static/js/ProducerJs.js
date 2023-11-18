@@ -1,11 +1,4 @@
 
-async function displayPlaylist(index) {
-    const SongListElement = document.getElementById('mainSongList');
-    const timeSlotElement = document.getElementById('timeslot');
-    timeSlotElement.textContent = timeslots[index].time;
-    SongListElement.textContent = "";
-}
-
 //Alert when play button is clicked
 function playSong(songName, songArtist, songLength) {
     alert(`Now Playing: ${songName}`);

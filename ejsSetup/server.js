@@ -92,8 +92,7 @@ app.post('/addSong', async (req, res) => {
   playlist.songs.push(selectedSong);
   await playlist.save();
 
-  res.status(201).json({success: true, message: 'Song added to the playlist successfully'});
-
+  res.redirect('/');
 });
 
 

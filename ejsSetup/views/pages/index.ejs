@@ -16,46 +16,57 @@
             <div class="TimeslotBox" style="margin-left: .5em; font-family: Helvetica;">
                 <h1 style="padding: 0%;">Playlist Info</h1>
                 <h2 id="timeslot"></h2>
-                <h3 id="mainSongList"></h3>
+                <h3 id="mainSongList" class="PlayListBox"></h3>
                 
-                <h1>Add Songs</h1>
-                    <form action="/addSong" method="POST">
-                    <select id="selectedSong" name="selectedSong" required>
-                        <% DBsongs.forEach(song => { %>
-                            <option value="<%= song.title %>"><%= song.title %> by <%= song.artist %></option>
-                        <% }); %>
-                    </select>
+                <form action="/addSong" method="POST" class="FormBox">
+                <select id="selectedSong" name="selectedSong" required>
+                    <% DBsongs.forEach(song => { %>
+                        <option value="<%= song.title %>"><%= song.title %> by <%= song.artist %></option>
+                    <% }); %>
+                </select>
 
-                    <select id="selectedTimeslot" name="selectedTimeslot" required>
-                        <% playlist.forEach(item => { %>
-                            <option value="<%= item.timeslot %>"><%= item.timeslot %></option>
-                        <% }); %>
-                    </select>
-                    
-                    <button type="submit">Add Song</button>
-                    </form>
+                <select id="selectedTimeslot" name="selectedTimeslot" required>
+                    <% playlist.forEach(item => { %>
+                        <option value="<%= item.timeslot %>"><%= item.timeslot %></option>
+                    <% }); %>
+                </select>
+                
+                <button type="submit">Add Song</button>
+                </form>
 
                 <h4 id="songPlaying">Now Playing: Nothing | By: | Length:</h4>
                 <p id="demo"></p>
 
 
                 <script>
-                    const playlist = JSON.parse(`<%- JSON.stringify(playlist) %>`);
-                    const timeSlotElement = document.getElementById('timeslot');
-                    const SongListElement = document.getElementById('mainSongList');
-                    
-                    const timeItem = document.createElement('p');
-                    timeItem.textContent = playlist[0].timeslot;
-                    timeSlotElement.appendChild(timeItem);
-
-                    playlist.forEach(item => {
-                        item.songs.forEach(song => {
-                            console.log(song);
+                    //fills the playlist initially and changes based on the timeslot.
+                    fillPlaylist(0);
+                
+                    async function fillPlaylist(index) {
+                        const playlist = JSON.parse(`<%- JSON.stringify(playlist) %>`);
+                        const timeSlotElement = document.getElementById('timeslot');
+                        const SongListElement = document.getElementById('mainSongList');
+                
+                        timeSlotElement.textContent = '';
+                        SongListElement.innerHTML = '';
+                
+                        const timeItem = document.createElement('p');
+                        timeItem.textContent = playlist[index].timeslot;
+                        timeSlotElement.appendChild(timeItem);
+                
+                        playlist[index].songs.forEach(song => {
                             const listItem = document.createElement('li');
-                            listItem.textContent = `${song.title} by ${song.artist} | Length: ${song.length}`;;
+                            listItem.textContent = `${song.title} by ${song.artist} | Length: ${song.length}`;
                             SongListElement.appendChild(listItem);
-                        });                        
-                    });
+                        });
+                    }
+                
+                    async function displayPlaylist(index) {
+                        const timeSlotElement = document.getElementById('timeslot');
+                        timeSlotElement.textContent = timeslots[index].time;
+                
+                        fillPlaylist(index);
+                    }
                 </script>
             </div>
 
@@ -118,20 +129,13 @@
                         const playButton = document.createElement("button");
                         playButton.textContent = "Play";
                         playButton.classList.add("BookButton");
+                        
                         playButton.addEventListener("click", () => {
                             playSong(song.title, song.artist, song.length);
                         });
 
-                        const addButton = document.createElement("button");
-                        addButton.textContent = "Add";
-                        addButton.classList.add("BookButton");
-                        addButton.addEventListener("click", () => {
-                            addSong(song.title, song.artist, song.length);
-                        });
-
                         songListElement.appendChild(listItem);
                         listItem.appendChild(playButton);
-                        listItem.appendChild(addButton);
                     });
                 </script>
             </div>
